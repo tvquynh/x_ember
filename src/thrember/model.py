@@ -298,7 +298,7 @@ def read_metadata(data_dir: Path | str) -> pl.DataFrame:
 
     challenge_feature_paths = gather_feature_paths(data_path, "challenge")
     challenge_records = list(pool.imap(read_metadata_record, raw_feature_iterator(challenge_feature_paths)))
-    challenge_metadf = pl.DataFrame(test_records).with_columns(subset=pl.lit("challenge")).select(ORDERED_COLUMNS)
+    challenge_metadf = pl.DataFrame(challenge_records).with_columns(subset=pl.lit("challenge")).select(ORDERED_COLUMNS)
 
     return train_metadf, test_metadf, challenge_metadf
 
